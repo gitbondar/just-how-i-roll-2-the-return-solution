@@ -3,50 +3,50 @@ document.querySelector('.double-d6-roll-1').onclick = rollDoubleD6;
 document.querySelector('.double-d6-roll-2').onclick = rollDoubleD6;
 document.querySelector('.d12-roll').onclick = rollD12;
 document.querySelector('.d20-roll').onclick = rollD20;
+document.querySelector('.d8-roll').onclick = rollD8;
 
 function rollD6() {
-    const randomFloatUnderOne = Math.random();
-    const randomFloat = randomFloatUnderOne * 6;
-    const roll = Math.ceil(randomFloat);
+    const roll = getRoll(6);
    
-    const newSrc = `./images/d6/${roll}.png`;
-    const rollImage = document.querySelector('.d6-roll');
-    rollImage.src = newSrc;
+    addImg(roll, '.d6-roll', 'd6');
 }
 
 function rollD12() {
-    const randomFloatUnderOne = Math.random();
-    const randomFloat = randomFloatUnderOne * 12;
-    const roll = Math.ceil(randomFloat);
+    const roll = getRoll(12);
    
-    const newSrc = `./images/numbers/${roll}.png`;
-    const rollImage = document.querySelector('.d12-roll');
-    rollImage.src = newSrc;
+    addImg(roll, '.d12-roll', 'numbers');
 }
 
 function rollD20() {
-    const randomFloatUnderOne = Math.random();
-    const randomFloat = randomFloatUnderOne * 20;
-    const roll = Math.ceil(randomFloat);
+    const roll = getRoll(20);
    
-    const newSrc = `./images/numbers/${roll}.png`;
-    const rollImage = document.querySelector('.d20-roll');
-    rollImage.src = newSrc;
+    addImg(roll, '.d20-roll', 'numbers');
 }
 
 function rollDoubleD6() {
-    const randomFloatUnderOne1 = Math.random();
-    const randomFloat1 = randomFloatUnderOne1 * 6;
-    const roll1 = Math.ceil(randomFloat1);
-
-    const randomFloatUnderOne2 = Math.random();
-    const randomFloat2 = randomFloatUnderOne2 * 6;
-    const roll2 = Math.ceil(randomFloat2);
+    const roll1 = getRoll(6);
+    const roll2 = getRoll(6);
    
-    const newSrc1 = `./images/d6/${roll1}.png`;
-    const newSrc2 = `./images/d6/${roll2}.png`;
-    const rollImage1 = document.querySelector('.double-d6-roll-1');
-    const rollImage2 = document.querySelector('.double-d6-roll-2');
-    rollImage1.src = newSrc1;
-    rollImage2.src = newSrc2;
+    addImg(roll1, '.double-d6-roll-1', 'd6');
+    addImg(roll2, '.double-d6-roll-2', 'd6');
+}
+
+function rollD8() {
+    const roll = getRoll(8);
+
+    addImg(roll, '.d8-roll', 'numbers');
+}
+
+function getRoll(max) {
+    const randomFloatUnderOne = Math.random();
+    const randomFloat = randomFloatUnderOne * max;
+    const roll = Math.ceil(randomFloat);
+
+    return roll;
+}
+
+function addImg(roll, selector, pictureType) {
+    const newSrc = `./images/${pictureType}/${roll}.png`;
+    const rollImage = document.querySelector(selector);
+    rollImage.src = newSrc;
 }
